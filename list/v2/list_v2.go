@@ -1,4 +1,4 @@
-package main
+package v2
 
 import (
 	"fmt"
@@ -91,7 +91,7 @@ func (l *List) InsertBefore(at *ListNode, v any) {
 // 仅返回第一个匹配的节点
 func (l *List) Find(v any) *ListNode {
 	// 跳过虚拟头结点、跳过虚拟尾结点
-	for node := l.head.next; node.Next() != nil; node = node.next {
+	for node := l.head.next; node != l.tail; node = node.next {
 		if node.val == v {
 			return node
 		}
@@ -119,7 +119,7 @@ func (l *List) GetLen() int {
 // ForEach 正向遍历
 func (l *List) ForEach() []any {
 	res := make([]any, 0)
-	for node := l.head.next; node.Next() != nil; node = node.next {
+	for node := l.head.next; node != l.tail; node = node.next {
 		res = append(res, node.val)
 	}
 	return res
@@ -128,7 +128,7 @@ func (l *List) ForEach() []any {
 // ForReverse 反向遍历
 func (l *List) ForReverse() []any {
 	res := make([]any, 0)
-	for node := l.tail.prev; node.Prev() != nil; node = node.prev {
+	for node := l.tail.prev; node != l.head; node = node.prev {
 		res = append(res, node.val)
 	}
 	return res
@@ -138,50 +138,8 @@ func (l *List) ForReverse() []any {
 func (l *List) Print() {
 	res := make([]any, 0)
 	// 跳过虚拟头结点、跳过虚拟尾结点
-	for node := l.head.next; node.Next() != nil; node = node.next {
+	for node := l.head.next; node != l.tail; node = node.next {
 		res = append(res, node.val)
 	}
 	fmt.Println(res)
-}
-
-func main() {
-	l := NewList()
-
-	// 尾插
-	l.PushBack(4)
-	l.PushBack(5)
-	l.PushBack(6)
-	l.PushBack(8)
-	l.Print() // [4 5 6 8]
-
-	// 头插
-	l.PushFront(2)
-	l.PushFront(1)
-	l.PushFront(0)
-	l.Print() // [0 1 2 4 5 6 8]
-
-	// 在 at 后插入
-	at := l.Find(2)
-	l.InsertAfter(at, 3)
-	l.Print() // [0 1 2 3 4 5 6 8]
-
-	// 在 at 前插入
-	at = l.Find(8)
-	l.InsertBefore(at, 7)
-	l.Print() // [0 1 2 3 4 5 6 7 8]
-
-	// 删除头
-	l.Remove(0)
-	l.Print() // [1 2 3 4 5 6 7 8]
-
-	// 删除尾
-	l.Remove(8)
-	l.Print() // [1 2 3 4 5 6 7]
-
-	// 删除中间节点
-	l.Remove(4)
-	l.Print() // [1 2 3 5 6 7]
-
-	fmt.Println(l.ForEach())    // [1 2 3 5 6 7]
-	fmt.Println(l.ForReverse()) // [7 6 5 3 2 1]
 }
