@@ -1,7 +1,5 @@
 # go-blog
 
-你可以使用以下内容填充 [README.md](file:///Users/Ypuyu/Desktop/workspace/Github/AcWing/README.md) 文件，以清晰地描述你实现的**虚拟头结点方式的双向链表（Doubly Linked List with Dummy Head）**：
-
 ---
 
 # 双向链表（Doubly Linked List）实现说明
