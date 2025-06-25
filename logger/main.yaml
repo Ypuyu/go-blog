@@ -1,0 +1,8 @@
+zap:
+  debugFileName: "/log/debug/debug.log"
+  infoFileName: "/log/info/info.log"
+  WarnFileName: "/log/warn/warn.log"
+  MaxSize: 100
+  MaxAge: 30
+  MaxBackups: 10
+  LogIgnoreStackTrace: true
